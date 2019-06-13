@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './modules/home/home.component';
 import { CallbackComponent } from './modules/callback/callback.component';
+import { NavbarComponent } from './modules/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CallbackComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

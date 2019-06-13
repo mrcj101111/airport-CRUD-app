@@ -2,4 +2,13 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 //Import style sheets
-@import "./navbar.scss"
+@import "./navbar.scss";
+
+.splash-screen {
+  height: 100vh;
+  .callback-bg {
+    background: url("../assets/callback-bg.jpg") no-repeat center;
+    background-size: cover;
+    height: 100%;
+  }
+}
