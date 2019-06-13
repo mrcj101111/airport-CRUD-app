@@ -1,6 +1,9 @@
 @import "bootstrap_overwrites";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+//Angular Material theme
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+
 //Import style sheets
 @import "./navbar.scss";
 
