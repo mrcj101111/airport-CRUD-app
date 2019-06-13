@@ -19,4 +19,4 @@ Clone this repository to your local machine and then `cd` into the folder where 
 
     npm install
 
-Create a databse on your machine called _airport_.
+Create a databse on your machine called _airport_. Be sure to make your username _postgres_ and your password, _password_ when setting up the database.
