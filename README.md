@@ -9,6 +9,7 @@ A Functional CRUD web app for managing airports, along with associated SQL schem
 
 ## Requirements
 - Nodejs v10.16
+- Express.js v4.17.1
 - Angular v7+
 - PostgreSQL
 
