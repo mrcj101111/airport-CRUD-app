@@ -4,5 +4,8 @@ nav {
       cursor: pointer;
       font-weight: 500;
     }
+    &.logout {
+      padding-left: 0;
+    }
   }
 }

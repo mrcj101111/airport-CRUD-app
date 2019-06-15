@@ -42,9 +42,9 @@ export class AuthService {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 window.location.hash = '';
                 this.localLogin(authResult);
-                this.router.navigate(['/home']);
+                this.router.navigate(['/airports']);
             } else if (err) {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/airports']);
                 console.log(err);
             }
         });

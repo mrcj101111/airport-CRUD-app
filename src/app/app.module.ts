@@ -7,18 +7,18 @@ import { AuthService } from './auth/auth.service';
 import {MatTableModule} from '@angular/material/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { HomeComponent } from './modules/home/home.component';
 import { CallbackComponent } from './modules/callback/callback.component';
 import { NavbarComponent } from './modules/navbar/navbar.component';
 import { AirportsComponent } from './modules/airports/airports.component';
+import { AirlinesComponent } from './modules/airlines/airlines.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CallbackComponent,
     NavbarComponent,
-    AirportsComponent
+    AirportsComponent,
+    AirlinesComponent,
   ],
   imports: [
     BrowserModule,
