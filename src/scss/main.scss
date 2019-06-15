@@ -21,3 +21,16 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
     height: 100%;
   }
 }
+
+.page-headings {
+  text-align: center;
+  margin: 10px auto 0 auto;
+  border-bottom: 2px solid #dcd7d7;
+  max-width: 150px;
+}
+
+.mat-raised-button {
+  &:focus {
+    outline: none;
+  }
+}

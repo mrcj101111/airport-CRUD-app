@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { Airline } from '../shared/interfaces/api.models';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ApiService {
@@ -11,9 +14,9 @@ export class ApiService {
 
     constructor(protected http: HttpClient) { }
 
-    getAirlines() {
-        return this.http.get(this.baseUrl + this.URL_AIRLINE);
+    getAirlines(): Observable<Airline>  {
+        return this.http.get(this.baseUrl + this.URL_AIRLINE).pipe(
+            map(data => data as Airline)
+        );
     }
-
-
 }

@@ -31,8 +31,8 @@ exports.createAirline = (req, res) => {
 //Get airlines
 exports.getAirlines = (req, res) => {
     db('airline').select().then(result => {
-        res.status(200).json({
+        res.status(200).json(
             result
-        })
+        )
     })
 }

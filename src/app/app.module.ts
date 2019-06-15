@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { CallbackComponent } from './modules/callback/callback.component';
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
 
     // Angular Material
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
   ],
   providers: [AuthService, ApiService],
   bootstrap: [AppComponent]
