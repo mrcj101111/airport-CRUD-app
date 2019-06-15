@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.services';
 
 export interface PeriodicElement {
   name: string;
@@ -28,9 +29,10 @@ export class AirlinesComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    return this.apiService.getAirlines().subscribe();
   }
 
 }

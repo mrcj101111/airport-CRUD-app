@@ -1,5 +1,9 @@
 const express = require('express');
+const bodyParser = require("body-parser");
 const db = require('./database/index');
+
+// Route imports
+const airlineRoutes = require('./routes/airlines')
 
 //Configure knex's promise to global promise
 db.promise = global.Promise;
@@ -12,8 +16,10 @@ const app = express();
 
 app.listen('3000', () => console.log('Server running on http://localhost:3000'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-
+// Set headers
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -26,5 +32,8 @@ app.use((req, res, next) => {
     );
     next();
   });
+
+// Routes
+  app.use('/api/airlines', airlineRoutes);
 
   module.exports = app;

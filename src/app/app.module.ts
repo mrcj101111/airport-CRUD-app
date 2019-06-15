@@ -11,6 +11,8 @@ import { CallbackComponent } from './modules/callback/callback.component';
 import { NavbarComponent } from './modules/navbar/navbar.component';
 import { AirportsComponent } from './modules/airports/airports.component';
 import { AirlinesComponent } from './modules/airlines/airlines.component';
+import { ApiService } from './services/api.services';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,12 @@ import { AirlinesComponent } from './modules/airlines/airlines.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     // Angular Material
     MatTableModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
