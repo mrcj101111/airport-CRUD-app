@@ -19,4 +19,12 @@ Clone this repository to your local machine and then `cd` into the folder where 
 
     npm install
 
-Create a databse on your machine called _airport_. Be sure to make your username _postgres_ and your password, _password_ when setting up the database.
+Create a databse in Postgres called _airport_. Be sure to make your username _postgres_ and your password, _password_ when setting up the database.
+
+## Run 
+To run your backend on a local server, navigate into the `api` and type in the following in your cli:
+
+    node app.js
+
+To run your frontend on a local server, navigate into the `airport-CRUD-app` folder and run the following command:
+    ng serve
