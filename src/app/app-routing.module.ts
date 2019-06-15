@@ -4,6 +4,8 @@ import { CallbackComponent } from './modules/callback/callback.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AirportsComponent } from './modules/airports/airports.component';
 import { AirlinesComponent } from './modules/airlines/airlines.component';
+import { CreateAirlineComponent } from './modules/airlines/create-airline/create-airline.component';
+import { CountriesComponent } from './modules/countries/countries.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'airports' },
@@ -11,17 +13,20 @@ const routes: Routes = [
   {
     path: 'airports', canActivate: [AuthGuard], component: AirportsComponent,
     children: [
-      {
-        path: '', component: AirportsComponent,
-      },
+      { path: '', component: AirportsComponent },
     ]
   },
   {
-    path: 'airlines', canActivate: [AuthGuard], component: AirlinesComponent,
+    path: 'airlines', canActivate: [AuthGuard],
     children: [
-      {
-        path: 'airlines', component: AirlinesComponent,
-      }
+      { path: '', component: AirlinesComponent },
+      { path: 'create-airline', component: CreateAirlineComponent }
+    ]
+  },
+  {
+    path: 'countries', canActivate: [AuthGuard],
+    children: [
+      { path: '', component: CountriesComponent }
     ]
   }
 ];

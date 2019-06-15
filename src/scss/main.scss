@@ -4,14 +4,15 @@
 //Angular Material theme
 @import "~@angular/material/theming";
 @include mat-core();
-$my-app-primary: mat-palette($mat-red, 900);
+$my-app-primary: mat-palette($mat-blue, 900);
 $my-app-accent: mat-palette($mat-pink, 500, 900, A100);
-$my-app-warn: mat-palette($mat-deep-orange);
+$my-app-warn: mat-palette($mat-red, 700);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
 
 //Import style sheets
 @import "./navbar.scss";
+@import "./airlines.scss";
 
 .splash-screen {
   height: 100vh;
@@ -26,11 +27,27 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   text-align: center;
   margin: 10px auto 0 auto;
   border-bottom: 2px solid #dcd7d7;
-  max-width: 150px;
+  max-width: 200px;
 }
 
+form {
+  max-width: 700px;
+  margin: auto;
+}
+
+// Angular Material
 .mat-raised-button {
   &:focus {
     outline: none;
   }
+}
+
+mat-icon {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.invalid-feedback {
+  display: unset;
 }

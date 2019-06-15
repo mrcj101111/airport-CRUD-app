@@ -11,11 +11,16 @@ export class ApiService {
 
     URL_AIRLINE = 'airlines';
 
-
     constructor(protected http: HttpClient) { }
 
-    getAirlines(): Observable<Airline>  {
+    getAirlines(): Observable<Airline> {
         return this.http.get(this.baseUrl + this.URL_AIRLINE).pipe(
+            map(data => data as Airline)
+        );
+    }
+
+    createAirline(airlineName: string, airlineId: number): Observable<Airline> {
+        return this.http.post(this.baseUrl + this.URL_AIRLINE + '/create-airline', {airlineName, airlineId}).pipe(
             map(data => data as Airline)
         );
     }

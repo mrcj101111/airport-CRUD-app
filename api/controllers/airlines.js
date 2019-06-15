@@ -5,15 +5,15 @@ const router = express.Router();
 
 //Create airline
 exports.createAirline = (req, res) => {
-    db.from('airline').where('airline_name', req.body.airline_name).then(airlineList => {
+    db.from('airline').where('airline_name', req.body.airlineName).then(airlineList => {
         if (airlineList.length === 0) {
             db('airline').insert({
-                airline_name: req.body.airline_name,
-                country_id: req.body.country_id,
+                airline_name: req.body.airlineName,
+                country_id: req.body.countryId,
             }).then(result => {
-                res.status(201).json({
-                    message: 'Airline was successfully created!'
-                })
+                res.status(201).json(
+                    result
+                )
             })
                 .catch(err => {
                     res.status(500).json({
@@ -26,7 +26,7 @@ exports.createAirline = (req, res) => {
             })
         }
     })
-}
+} 
 
 //Get airlines
 exports.getAirlines = (req, res) => {

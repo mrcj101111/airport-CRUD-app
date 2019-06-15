@@ -1,0 +1,26 @@
+<div class="container">
+  <h3 class="page-headings">Create Airlines</h3>
+
+  <form class="w-100" [formGroup]="createAirlineForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Airline name" formControlName="airline_name"
+        [ngClass]="{ 'is-invalid': submitted && f.airline_name.errors }">
+      <div *ngIf="submitted && f.airline_name.errors" class="invalid-feedback">
+        <div *ngIf="f.airline_name.errors.required">Airline name is required</div>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Airline country" formControlName="country_id"
+        [ngClass]="{ 'is-invalid': submitted && f.country_id.errors }" value="Test">
+      <mat-icon matSuffix ngbTooltip="Add country" routerLink="/countries">add_location
+       
+      </mat-icon>
+      <div *ngIf="submitted && f.country_id.errors" class="invalid-feedback">
+        <div *ngIf="f.country_id.errors.required">Airline id is required</div>
+      </div>
+    </mat-form-field>
+    <button mat-raised-button class="float-right mb-2" type="submit">Create</button>
+    <a mat-raised-button class="float-right mb-2" routerLink="../">Cancel</a>
+  </form>
+</div>
