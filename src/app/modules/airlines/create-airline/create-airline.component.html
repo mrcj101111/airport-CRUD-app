@@ -13,7 +13,7 @@
     <mat-form-field class="w-100">
       <input matInput placeholder="Airline country" formControlName="country_id"
         [ngClass]="{ 'is-invalid': submitted && f.country_id.errors }" value="Test">
-      <mat-icon matSuffix ngbTooltip="Add country" routerLink="/countries">add_location
+      <mat-icon matSuffix ngbTooltip="Add country" routerLink="/countries/add-country">add_location
        
       </mat-icon>
       <div *ngIf="submitted && f.country_id.errors" class="invalid-feedback">

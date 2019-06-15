@@ -18,6 +18,7 @@ import { AirlinesComponent } from './modules/airlines/airlines.component';
 import { ApiService } from './services/api.services';
 import { CreateAirlineComponent } from './modules/airlines/create-airline/create-airline.component';
 import { CountriesComponent } from './modules/countries/countries.component';
+import { AddCountryComponent } from './modules/countries/add-country/add-country.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CountriesComponent } from './modules/countries/countries.component';
     AirlinesComponent,
     CreateAirlineComponent,
     CountriesComponent,
+    AddCountryComponent,
   ],
   imports: [
     ToastrModule.forRoot({
