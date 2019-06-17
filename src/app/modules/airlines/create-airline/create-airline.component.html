@@ -10,16 +10,24 @@
       </div>
     </mat-form-field>
 
-    <mat-form-field class="w-100">
-      <input matInput placeholder="Airline country" formControlName="country_id"
-        [ngClass]="{ 'is-invalid': submitted && f.country_id.errors }" value="Test">
-      <mat-icon matSuffix ngbTooltip="Add country" routerLink="/countries/add-country">add_location
-       
-      </mat-icon>
-      <div *ngIf="submitted && f.country_id.errors" class="invalid-feedback">
-        <div *ngIf="f.country_id.errors.required">Airline id is required</div>
-      </div>
-    </mat-form-field>
+    <ng-container *ngIf="(countries$ | async) as countries">
+      <mat-form-field class="w-100">
+        <mat-label>Select country</mat-label>
+
+        <mat-select formControlName="country_name" [(ngModel)]="selectedCountry" [ngClass]="{ 'is-invalid': submitted && f.country_name.errors }"
+          value="Test">
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country.country_name }}
+          </mat-option>
+        </mat-select>
+
+
+
+        <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
+          <div *ngIf="f.country_name.errors.required">Country name is required</div>
+        </div>
+      </mat-form-field>
+    </ng-container>
     <button mat-raised-button class="float-right mb-2" type="submit">Create</button>
     <a mat-raised-button class="float-right mb-2" routerLink="../">Cancel</a>
   </form>

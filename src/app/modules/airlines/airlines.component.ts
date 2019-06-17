@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.services';
 import { Airline } from 'src/app/shared/interfaces/api.models';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-airlines',
@@ -10,12 +9,11 @@ import { map } from 'rxjs/operators';
 })
 export class AirlinesComponent implements OnInit {
   airlines$: Observable<Airline>;
-  displayedColumns: string[] = ['name', 'country'];
+  displayedColumns: string[] = ['name', 'country', 'actions'];
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.airlines$ = this.apiService.getAirlines();
   }
-
 }

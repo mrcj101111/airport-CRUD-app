@@ -25,7 +25,7 @@ export class AuthService {
         this._expiresAt = 0;
     }
 
-    get accessToken(): string {
+    get accessToken(): any {
         return this._accessToken;
     }
 

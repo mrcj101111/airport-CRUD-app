@@ -6,13 +6,23 @@
     <!-- Airline name column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Airline name </th>
-      <td mat-cell *matCellDef="let airline"> {{airline.airline_name}} </td>
+      <td mat-cell *matCellDef="let airlines"> {{airlines.airline.name}}</td>
     </ng-container>
 
     <!-- Country Column -->
     <ng-container matColumnDef="country">
       <th mat-header-cell *matHeaderCellDef> Country </th>
-      <td mat-cell *matCellDef="let airline"> {{airline.country_id}} </td>
+      <td mat-cell *matCellDef="let airlines"> {{airlines.airline.country.name}}</td>
+    </ng-container>
+
+    <!--Actions-->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let airlines">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-icon class="mx-3" matSuffix>delete_forever</mat-icon>
+        <mat-icon matSuffix>remove_red_eye</mat-icon>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

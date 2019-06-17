@@ -26,13 +26,26 @@ exports.createAirline = (req, res) => {
             })
         }
     })
-} 
+}
 
 //Get airlines
 exports.getAirlines = (req, res) => {
-    db('airline').select().then(result => {
-        res.status(200).json(
-            result
-        )
-    })
+    db('airline')
+        .join('country', { 'airline.country_id': 'country.country_id' })
+        .select().then(result => {
+            obj = result.map(data => {
+                return {
+                    airline: {
+                        id: data.airline_id,
+                        name: data.airline_name,
+                        country: {
+                            id: data.country_id,
+                            name: data.country_name,
+                            code: data.country_code
+                        }
+                    }
+                };
+            })
+            res.status(200).json(obj);
+        })
 }

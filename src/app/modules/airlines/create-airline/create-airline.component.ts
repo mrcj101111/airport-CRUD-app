@@ -4,8 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.services';
-import { Airline } from 'src/app/shared/interfaces/api.models';
+import { Airline, Country } from 'src/app/shared/interfaces/api.models';
 import { ToastrService } from 'ngx-toastr';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-airline',
@@ -13,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateAirlineComponent implements OnInit {
   airlines$: Observable<Airline>;
+  countries$: Observable<Country>;
+  selectedCountry: Country;
   createAirlineForm: FormGroup;
   submitted = false;
 
@@ -24,9 +27,10 @@ export class CreateAirlineComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.countries$ = this.apiService.getCountries();
     this.createAirlineForm = this.formBuilder.group({
       airline_name: ['', [Validators.required]],
-      country_id: [{ value: '', disabled: true }, '', [Validators.required]],
+      country_name: ['', [Validators.required]],
     });
   }
 
@@ -37,7 +41,7 @@ export class CreateAirlineComponent implements OnInit {
     if (this.createAirlineForm.invalid) {
       return;
     }
-    this.apiService.createAirline(this.createAirlineForm.value.airline_name, this.createAirlineForm.value.country_id).pipe(
+    this.apiService.createAirline(this.createAirlineForm.value.airline_name, this.selectedCountry.country_id).pipe(
     ).subscribe(res => {
       this.toastr.success('Airline successfully added!');
       this.airlines$ = of(res);

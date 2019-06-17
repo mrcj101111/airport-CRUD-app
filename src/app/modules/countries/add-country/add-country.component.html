@@ -1,3 +1,34 @@
-<p>
-  create-country works!
-</p>
+<div class="container">
+  <h3 class="page-headings">Add country</h3>
+
+<!--   <form class="w-100" [formGroup]="createCountryForm" (ngSubmit)="onSubmit()"> -->
+    <ng-container *ngIf="(countries$ | async) as countries">
+      <ng-container *ngFor="let country of countries">
+        {{ country.country_name }}
+
+      </ng-container>
+<!--       <mat-form-field class="w-100">
+
+
+        <mat-label>Country name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let country of countries" [ngClass]="{ 'is-invalid': submitted && f.country_name.errors }"
+            [value]="country.name">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+
+
+        <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
+          <div *ngIf="f.country_name.errors.required">Country name is required</div>
+        </div>
+      </mat-form-field> -->
+    </ng-container>
+<!--     <button mat-raised-button class="float-right mb-2" type="submit">Create</button>
+    <a mat-raised-button class="float-right mb-2" routerLink="/airlines/create-airline">Cancel</a>
+  </form> -->
+</div>
+
+<ng-container *ngIf="(countries$ | async) as countries">
+  {{ countries }}
+</ng-container>
