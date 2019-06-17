@@ -28,3 +28,38 @@ exports.createAirport = (req, res) => {
         }
     })
 }
+
+//Get airports
+exports.getAirports = (req, res) => {
+    db('airport')
+        .join('country', { 'airport.country_id': 'country.country_id' })
+        /* .join('airline', { 'airport.airline_id': 'airline.airline_id' }) */
+        .select().then(result => {
+            console.log(result);
+            obj = result.map(data => {
+                return {
+                    airport: {
+                        id: data.airport_id,
+                        name: data.name,
+                        location: data.location,
+                        country: {
+                            id: data.country_id,
+                            name: data.country_name,
+                            code: data.country_code
+                        },
+                        /* airline: {
+                            id: data.airline_id,
+                            name: data.airline_name,
+                            country: data.country_id,
+                        } */
+                    }
+                };
+            })
+            res.status(200).json(obj);
+        }).catch(err => {
+            console.log(err)
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}
