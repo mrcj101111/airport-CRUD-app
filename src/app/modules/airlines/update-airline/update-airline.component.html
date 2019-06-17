@@ -22,7 +22,7 @@
           </mat-option>
         </mat-select>
 
-        
+
         <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
           <div *ngIf="f.country_name.errors.required">Please select a country name</div>
         </div>
@@ -30,7 +30,7 @@
     </ng-container>
 
       <button mat-raised-button class="float-right mb-2" type="submit">Update</button>
-      <a mat-raised-button class="float-right mb-2" routerLink="../">Cancel</a>
+      <a mat-raised-button class="float-right mb-2" routerLink="../../">Cancel</a>
     </form>
   </ng-container>
 </div>

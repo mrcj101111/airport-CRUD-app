@@ -90,3 +90,18 @@ exports.updateAirline = (req, res) => {
             })
         })
 }
+
+// Delete airline
+exports.deleteAirline = (req, res) => {
+    db('airline')
+        .where('airline_id', req.params.id)
+        .del().then(result => {
+            res.status(201).json({
+                message: 'Airline successfully deleted!'
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}

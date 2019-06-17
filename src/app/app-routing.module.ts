@@ -6,6 +6,7 @@ import { AirportsComponent } from './modules/airports/airports.component';
 import { AirlinesComponent } from './modules/airlines/airlines.component';
 import { CreateAirlineComponent } from './modules/airlines/create-airline/create-airline.component';
 import { UpdateAirlineComponent } from './modules/airlines/update-airline/update-airline.component';
+import { AirlineDetailComponent } from './modules/airlines/airline-detail/airline-detail.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'airports' },
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: '', component: AirlinesComponent },
       { path: 'create-airline', component: CreateAirlineComponent },
       { path: 'update-airline/:id', component: UpdateAirlineComponent },
+      { path: ':id', component: AirlineDetailComponent },
     ]
   },
 ];

@@ -22,8 +22,10 @@
         <a [routerLink]="['update-airline', airlines.airline.id]">
           <mat-icon matSuffi>mode_edit</mat-icon>
         </a>
-        <mat-icon class="mx-3" matSuffix>delete_forever</mat-icon>
-        <mat-icon matSuffix>remove_red_eye</mat-icon>
+        <mat-icon (click)="delete(airlines.airline.id)" class="mx-3" matSuffix>delete_forever</mat-icon>
+        <a [routerLink]="[airlines.airline.id]">
+          <mat-icon matSuffix>remove_red_eye</mat-icon>
+        </a>
       </td>
     </ng-container>
 

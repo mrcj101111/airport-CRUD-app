@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { ApiService } from 'src/app/services/api.services';
 import { Airline, Country } from 'src/app/shared/interfaces/api.models';
 import { ToastrService } from 'ngx-toastr';
-import { tap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-create-airline',
   templateUrl: './create-airline.component.html',

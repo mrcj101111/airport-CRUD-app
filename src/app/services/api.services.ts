@@ -39,6 +39,12 @@ export class ApiService {
         );
     }
 
+    deleteAirline(airlineId: number): Observable<Airline> {
+        return this.http.delete(this.baseUrl + this.URL_AIRLINE + '/delete-airline/' + airlineId).pipe(
+            map(data => data as Airline)
+        );
+    }
+
     // Countries
     getCountries(): Observable<Country> {
         return this.http.get(this.baseUrl + this.URL_COUNTRY).pipe(
