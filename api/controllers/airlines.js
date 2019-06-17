@@ -49,3 +49,20 @@ exports.getAirlines = (req, res) => {
             res.status(200).json(obj);
         })
 }
+
+//Update airlines
+exports.updateAirline = (req, res) => {
+    db.from('airline').update({
+        airline_name: req.body.airlineName,
+        country_id: req.body.countryId,
+    }).where('airline_id', req.body.airlineId)
+        .then(result => {
+            res.status(201).json({
+                message: 'Airline successfully updated!'
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}
