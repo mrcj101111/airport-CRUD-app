@@ -50,13 +50,37 @@ exports.getAirlines = (req, res) => {
         })
 }
 
+//Get current airline
+exports.getAirline = (req, res) => {
+    db('airline').where('airline_id', req.params.id)
+        .select()
+        .join('country', { 'airline.country_id': 'country.country_id' })
+        .then(result => {
+            obj = result.map(data => {
+                return {
+                    airline: {
+                        id: data.airline_id,
+                        name: data.airline_name,
+                        country: {
+                            id: data.country_id,
+                            name: data.country_name,
+                            code: data.country_code
+                        }
+                    }
+                };
+            })
+            res.status(200).json(obj);
+        })
+}
+
 //Update airlines
 exports.updateAirline = (req, res) => {
-    db.from('airline').update({
-        airline_name: req.body.airlineName,
-        country_id: req.body.countryId,
-    }).where('airline_id', req.body.airlineId)
-        .then(result => {
+    db('airline')
+        .where('airline_id', req.params.id)
+        .update({
+            airline_name: req.body.airlineName,
+            country_id: req.body.countryId,
+        }).then(result => {
             res.status(201).json({
                 message: 'Airline successfully updated!'
             })

@@ -17,9 +17,8 @@ import { AirportsComponent } from './modules/airports/airports.component';
 import { AirlinesComponent } from './modules/airlines/airlines.component';
 import { ApiService } from './services/api.services';
 import { CreateAirlineComponent } from './modules/airlines/create-airline/create-airline.component';
-import { CountriesComponent } from './modules/countries/countries.component';
-import { AddCountryComponent } from './modules/countries/add-country/add-country.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { UpdateAirlineComponent } from './modules/airlines/update-airline/update-airline.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     AirportsComponent,
     AirlinesComponent,
     CreateAirlineComponent,
-    CountriesComponent,
-    AddCountryComponent,
+    UpdateAirlineComponent,
   ],
   imports: [
     ToastrModule.forRoot({

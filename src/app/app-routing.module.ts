@@ -5,8 +5,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AirportsComponent } from './modules/airports/airports.component';
 import { AirlinesComponent } from './modules/airlines/airlines.component';
 import { CreateAirlineComponent } from './modules/airlines/create-airline/create-airline.component';
-import { CountriesComponent } from './modules/countries/countries.component';
-import { AddCountryComponent } from './modules/countries/add-country/add-country.component';
+import { UpdateAirlineComponent } from './modules/airlines/update-airline/update-airline.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'airports' },
@@ -21,16 +20,10 @@ const routes: Routes = [
     path: 'airlines', canActivate: [AuthGuard],
     children: [
       { path: '', component: AirlinesComponent },
-      { path: 'create-airline', component: CreateAirlineComponent }
+      { path: 'create-airline', component: CreateAirlineComponent },
+      { path: 'update-airline/:id', component: UpdateAirlineComponent },
     ]
   },
-  {
-    path: 'countries', canActivate: [AuthGuard],
-    children: [
-      { path: '', component: CountriesComponent },
-      { path: 'add-country', component: AddCountryComponent },
-    ]
-  }
 ];
 
 @NgModule({

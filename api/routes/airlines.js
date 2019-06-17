@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/create-airline', AirlinesController.createAirline);
 router.get('', AirlinesController.getAirlines);
-router.patch('/update-airline', AirlinesController.updateAirline);
+router.get('/:id', AirlinesController.getAirline);
+router.patch('/update-airline/:id', AirlinesController.updateAirline);
 
 module.exports = router;

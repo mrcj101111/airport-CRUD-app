@@ -21,8 +21,20 @@ export class ApiService {
         );
     }
 
+    getAirline(airlineId: number): Observable<Airline> {
+        return this.http.get(this.baseUrl + this.URL_AIRLINE + '/' + airlineId).pipe(
+            map(data => data as Airline)
+        );
+    }
+
     createAirline(airlineName: string, countryId: number): Observable<Airline> {
         return this.http.post(this.baseUrl + this.URL_AIRLINE + '/create-airline', { airlineName, countryId }).pipe(
+            map(data => data as Airline)
+        );
+    }
+
+    updateAirline(airlineName: string, countryId: number, airlineId: number): Observable<Airline> {
+        return this.http.patch(this.baseUrl + this.URL_AIRLINE + '/update-airline/' + airlineId, { airlineName, countryId }).pipe(
             map(data => data as Airline)
         );
     }

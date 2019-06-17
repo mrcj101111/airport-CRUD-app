@@ -16,4 +16,8 @@ export class AirlinesComponent implements OnInit {
   ngOnInit() {
     this.airlines$ = this.apiService.getAirlines();
   }
+
+  update() {
+    
+  }
 }
