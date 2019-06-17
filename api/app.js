@@ -5,6 +5,7 @@ const db = require('./database/index');
 // Route imports
 const airlineRoutes = require('./routes/airlines');
 const countriesRoutes = require('./routes/countries');
+const airportRoutes = require('./routes/airports');
 
 //Configure knex's promise to global promise
 db.promise = global.Promise;
@@ -37,5 +38,6 @@ app.use((req, res, next) => {
 // Routes
   app.use('/api/airlines', airlineRoutes);
   app.use('/api/countries', countriesRoutes);
+  app.use('/api/airports', airportRoutes);
 
   module.exports = app;
