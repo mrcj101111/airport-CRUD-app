@@ -53,9 +53,9 @@ export class ApiService {
         );
     }
 
-    createAirport(airportName: string, location: number, countryId: number, airlineId: number): Observable<Airport> {
+    createAirport(airportName: string, lat: number, long: number, countryId: number, airlineId: number): Observable<Airport> {
         return this.http.post(this.baseUrl + this.URL_AIRPORTS + '/create-airport', {
-            airportName, location, countryId, airlineId
+            airportName, lat, long, countryId, airlineId
         }).pipe(map(data => data as Airport)
         );
     }

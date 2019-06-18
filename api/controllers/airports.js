@@ -8,7 +8,8 @@ exports.createAirport = (req, res) => {
         if (airportList.length === 0) {
             db('airport').insert({
                 name: req.body.airportName,
-                location: req.body.location,
+                lat: req.body.lat,
+                long: req.body.long,
                 country_id: req.body.countryId,
                 airline_id: req.body.airlineId,
             }).then(result => {

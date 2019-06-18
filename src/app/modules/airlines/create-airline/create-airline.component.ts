@@ -40,7 +40,6 @@ export class CreateAirlineComponent implements OnInit {
     if (this.createAirlineForm.invalid) {
       return;
     }
-    console.log(this.selectedCountry);
     this.apiService.createAirline(this.createAirlineForm.value.airline_name, this.selectedCountry.country_id).pipe(
     ).subscribe(res => {
       this.toastr.success('Airline successfully added!');
