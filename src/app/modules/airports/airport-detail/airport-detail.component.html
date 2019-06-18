@@ -1,0 +1,10 @@
+<div class="container">
+  <h3 class="page-headings mb-3">Airport</h3>
+  <ng-container *ngIf="(airport$ | async) as airport">
+    <h4>Airport name:</h4>
+    <p>{{ airport[0].airport.name }}</p>
+    <h4>Country:</h4>
+    <p>{{ airport[0].airport.country.name }}</p>
+    <a mat-raised-button class="float-right mt-2" routerLink="../">Cancel</a>
+  </ng-container>
+</div>

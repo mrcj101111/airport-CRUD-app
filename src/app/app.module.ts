@@ -21,6 +21,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { UpdateAirlineComponent } from './modules/airlines/update-airline/update-airline.component';
 import { AirlineDetailComponent } from './modules/airlines/airline-detail/airline-detail.component';
 import { CreateAirportComponent } from './modules/airports/create-airport/create-airport.component';
+import { AirportDetailComponent } from './modules/airports/airport-detail/airport-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CreateAirportComponent } from './modules/airports/create-airport/create
     UpdateAirlineComponent,
     AirlineDetailComponent,
     CreateAirportComponent,
+    AirportDetailComponent
   ],
   imports: [
     ToastrModule.forRoot({

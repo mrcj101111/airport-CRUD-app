@@ -53,6 +53,12 @@ export class ApiService {
         );
     }
 
+    getAirport(airportId: number): Observable<Airport> {
+        return this.http.get(this.baseUrl + this.URL_AIRPORTS + '/' + airportId).pipe(
+            map(data => data as Airport)
+        );
+    }
+
     createAirport(airportName: string, lat: number, long: number, countryId: number, airlineId: number): Observable<Airport> {
         return this.http.post(this.baseUrl + this.URL_AIRPORTS + '/create-airport', {
             airportName, lat, long, countryId, airlineId

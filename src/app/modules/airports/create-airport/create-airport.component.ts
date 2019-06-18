@@ -18,7 +18,7 @@ export class CreateAirportComponent implements OnInit {
   airport$: Observable<Airport>;
   createAirportForm: FormGroup;
   selectedCountry: Country;
-  selectedAirline: Airline;
+  selectedAirline: number;
   submitted = false;
   chosenLat: number;
   chosenLong: number;
@@ -69,13 +69,14 @@ export class CreateAirportComponent implements OnInit {
   get f() { return this.createAirportForm.controls; }
 
   onSubmit() {
+    console.log(this.selectedAirline);
     this.submitted = true;
     if (this.createAirportForm.invalid) {
       return;
     }
     this.apiService.createAirport(
       this.createAirportForm.value.airport_name, this.chosenLat, this.chosenLong,
-      this.selectedCountry.country_id, this.selectedAirline.airline_id).pipe(
+      this.selectedCountry.country_id, this.selectedAirline).pipe(
         tap(data => console.log(data))
       ).subscribe(res => {
         this.toastr.success('Airport successfully added!');

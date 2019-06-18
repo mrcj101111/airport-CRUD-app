@@ -8,6 +8,7 @@ import { CreateAirlineComponent } from './modules/airlines/create-airline/create
 import { UpdateAirlineComponent } from './modules/airlines/update-airline/update-airline.component';
 import { AirlineDetailComponent } from './modules/airlines/airline-detail/airline-detail.component';
 import { CreateAirportComponent } from './modules/airports/create-airport/create-airport.component';
+import { AirportDetailComponent } from './modules/airports/airport-detail/airport-detail.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'airports' },
@@ -17,6 +18,7 @@ const routes: Routes = [
     children: [
       { path: '', component: AirportsComponent },
       { path: 'create-airport', component: CreateAirportComponent },
+      { path: ':id', component: AirportDetailComponent },
     ]
   },
   {
