@@ -1,3 +1,41 @@
-<p>
-  airports works!
-</p>
+<div class="container">
+  <h3 class="page-headings">Airports</h3>
+  <button mat-raised-button class="float-right mb-2" routerLink="create-airport">Create airport</button>
+  <ng-container *ngIf="(airports$ | async) as airports; else noAirport">
+    <table mat-table [dataSource]="airports" class="mat-elevation-z8 mt-3 w-100">
+
+      <!--Airport name column-->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Airport name</th>
+        <td mat-cell *matCellDef="let airports"> {{airports.airport.name}}</td>
+      </ng-container>
+
+      <!--Country Column-->
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>Country</th>
+        <td mat-cell *matCellDef="let airports"> {{airports.airport.country.name}}</td>
+      </ng-container>
+
+      <!--Actions-->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let airports">
+          <a [routerLink]="['update-airport', airports.airport.id]">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </a>
+          <mat-icon (click)="delete(airports.airport.id)" class="mx-3" matSuffix>delete_forever</mat-icon>
+          <a [routerLink]="[airports.airport.id]">
+            <mat-icon matSuffix>remove_red_eye</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
+
+  <ng-template #noAirport>
+    There are no current airports. Please click the button to create a new airport.
+  </ng-template>
+</div>

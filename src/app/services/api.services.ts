@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Airline, Country } from '../shared/interfaces/api.models';
+import { Airline, Country, Airport } from '../shared/interfaces/api.models';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -11,6 +11,7 @@ export class ApiService {
 
     URL_AIRLINE = 'airlines';
     URL_COUNTRY = 'countries';
+    URL_AIRPORTS = 'airports';
 
     constructor(protected http: HttpClient) { }
 
@@ -42,6 +43,20 @@ export class ApiService {
     deleteAirline(airlineId: number): Observable<Airline> {
         return this.http.delete(this.baseUrl + this.URL_AIRLINE + '/delete-airline/' + airlineId).pipe(
             map(data => data as Airline)
+        );
+    }
+
+    // Airports
+    getAirports(): Observable<Airport> {
+        return this.http.get(this.baseUrl + this.URL_AIRPORTS).pipe(
+            map(data => data as Airport)
+        );
+    }
+
+    createAirport(airportName: string, location: number, countryId: number, airlineId: number): Observable<Airport> {
+        return this.http.post(this.baseUrl + this.URL_AIRPORTS + '/create-airport', {
+            airportName, location, countryId, airlineId
+        }).pipe(map(data => data as Airport)
         );
     }
 

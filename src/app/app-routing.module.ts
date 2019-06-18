@@ -7,14 +7,16 @@ import { AirlinesComponent } from './modules/airlines/airlines.component';
 import { CreateAirlineComponent } from './modules/airlines/create-airline/create-airline.component';
 import { UpdateAirlineComponent } from './modules/airlines/update-airline/update-airline.component';
 import { AirlineDetailComponent } from './modules/airlines/airline-detail/airline-detail.component';
+import { CreateAirportComponent } from './modules/airports/create-airport/create-airport.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'airports' },
   { path: 'callback', component: CallbackComponent },
   {
-    path: 'airports', canActivate: [AuthGuard], component: AirportsComponent,
+    path: 'airports', canActivate: [AuthGuard],
     children: [
       { path: '', component: AirportsComponent },
+      { path: 'create-airport', component: CreateAirportComponent },
     ]
   },
   {

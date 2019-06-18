@@ -32,10 +32,9 @@ exports.createAirport = (req, res) => {
 //Get airports
 exports.getAirports = (req, res) => {
     db('airport')
+        .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
         .join('country', { 'airport.country_id': 'country.country_id' })
-        /* .join('airline', { 'airport.airline_id': 'airline.airline_id' }) */
         .select().then(result => {
-            console.log(result);
             obj = result.map(data => {
                 return {
                     airport: {
@@ -47,17 +46,16 @@ exports.getAirports = (req, res) => {
                             name: data.country_name,
                             code: data.country_code
                         },
-                        /* airline: {
+                        airline: {
                             id: data.airline_id,
                             name: data.airline_name,
                             country: data.country_id,
-                        } */
+                        }
                     }
                 };
             })
             res.status(200).json(obj);
         }).catch(err => {
-            console.log(err)
             res.status(500).json({
                 message: 'Oops! Something went wrong, please try again later.'
             })
