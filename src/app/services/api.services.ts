@@ -60,6 +60,12 @@ export class ApiService {
         );
     }
 
+    deleteAirport(airportId: number): Observable<Airport> {
+        return this.http.delete(this.baseUrl + this.URL_AIRPORTS + '/delete-airport/' + airportId).pipe(
+            map(data => data as Airport)
+        );
+    }
+
     // Countries
     getCountries(): Observable<Country> {
         return this.http.get(this.baseUrl + this.URL_COUNTRY).pipe(

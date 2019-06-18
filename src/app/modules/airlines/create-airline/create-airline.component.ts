@@ -45,6 +45,10 @@ export class CreateAirlineComponent implements OnInit {
       this.toastr.success('Airline successfully added!');
       this.airlines$ = of(res);
       this.router.navigate(['airlines']);
-    });
+    },
+      (err) => {
+        this.toastr.warning('Oops, this airline already exists.');
+      }
+    );
   }
 }

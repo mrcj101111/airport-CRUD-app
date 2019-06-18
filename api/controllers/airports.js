@@ -62,3 +62,18 @@ exports.getAirports = (req, res) => {
             })
         })
 }
+
+// Delete airline
+exports.deleteAirport = (req, res) => {
+    db('airport')
+        .where('airport_id', req.params.id)
+        .del().then(result => {
+            res.status(201).json({
+                message: 'Airport successfully deleted!'
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}

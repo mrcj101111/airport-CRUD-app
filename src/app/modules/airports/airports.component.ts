@@ -20,4 +20,15 @@ export class AirportsComponent implements OnInit {
   ngOnInit() {
     this.airports$ = this.apiService.getAirports();
   }
+
+  delete(id: number) {
+    return this.apiService.deleteAirport(id).subscribe(res => {
+        this.toastr.success('Airport successfully deleted!');
+        this.airports$ = this.apiService.getAirports();
+      },
+      (err) => {
+        this.toastr.warning('Oop, something went wrong...');
+      }
+    );
+  }
 }

@@ -1,49 +1,52 @@
 <div class="container">
-    <h3 class="page-headings">Create Airport</h3>
-  
-    <form class="w-100" [formGroup]="createAirportForm" (ngSubmit)="onSubmit()">
+  <h3 class="page-headings">Create Airport</h3>
+
+  <form class="w-100" [formGroup]="createAirportForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Airport name" formControlName="airport_name"
+        [ngClass]="{ 'is-invalid': submitted && f.airport_name.errors }">
+      <div *ngIf="submitted && f.airport_name.errors" class="invalid-feedback">
+        <div *ngIf="f.airport_name.errors.required">Airport name is required</div>
+      </div>
+    </mat-form-field>
+
+    <ng-container *ngIf="(countries$ | async) as countries">
       <mat-form-field class="w-100">
-        <input matInput placeholder="Airport name" formControlName="airport_name"
-          [ngClass]="{ 'is-invalid': submitted && f.airport_name.errors }">
-        <div *ngIf="submitted && f.airport_name.errors" class="invalid-feedback">
-          <div *ngIf="f.airport_name.errors.required">Airport name is required</div>
+        <mat-label>Select country</mat-label>
+        <mat-select formControlName="country_name" [(ngModel)]="selectedCountry"
+          [ngClass]="{ 'is-invalid': submitted && f.country_name.errors }" value="Test">
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country.country_name }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
+          <div *ngIf="f.country_name.errors.required">Country name is required</div>
         </div>
       </mat-form-field>
-  
-      <ng-container *ngIf="(countries$ | async) as countries">
-        <mat-form-field class="w-100">
-          <mat-label>Select country</mat-label>
-          <mat-select formControlName="country_name" [(ngModel)]="selectedCountry" [ngClass]="{ 'is-invalid': submitted && f.country_name.errors }"
-            value="Test">
-            <mat-option *ngFor="let country of countries" [value]="country">
-              {{ country.country_name }}
-            </mat-option>
-          </mat-select>
-          <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
-            <div *ngIf="f.country_name.errors.required">Country name is required</div>
-          </div>
-        </mat-form-field>
-      </ng-container>
+    </ng-container>
 
-      <ng-container *ngIf="(airlines$ | async) as airlines">
-          <mat-form-field class="w-100">
-            <mat-label>Select airline</mat-label>
-            <mat-select formControlName="airline_name" [(ngModel)]="selectedAirline" [ngClass]="{ 'is-invalid': submitted && f.airline_name.errors }"
-              value="Test">
-              <mat-option *ngFor="let airline of airlines" [value]="airline">
-                {{ airline.airline.name }}
-              </mat-option>
-            </mat-select>
-            <div *ngIf="submitted && f.airline_name.errors" class="invalid-feedback">
-              <div *ngIf="f.airline_name.errors.required">Airline name is required</div>
-            </div>
-          </mat-form-field>
-        </ng-container>
+    <ng-container *ngIf="(airlines$ | async) as airlines">
+      <mat-form-field class="w-100">
+        <mat-label>Select airline</mat-label>
+        <mat-select formControlName="airline_name" [(ngModel)]="selectedAirline"
+          [ngClass]="{ 'is-invalid': submitted && f.airline_name.errors }" value="Test">
+          <mat-option *ngFor="let airline of airlines" [value]="airline">
+            {{ airline.airline.name }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="submitted && f.airline_name.errors" class="invalid-feedback">
+          <div *ngIf="f.airline_name.errors.required">Airline name is required</div>
+        </div>
+      </mat-form-field>
+      <a mat-raised-button class="mb-3" routerLink="/airlines/create-airline">
+        Add airline
+      </a>
+    </ng-container>
 
-      <p class="text-secondary">Select position of airport:</p>
-      <div #map style='width:100%;height:400px'></div>
+    <p class="text-secondary">Select position of airport:</p>
+    <div #map style='width:100%;height:400px'></div>
 
-      <button mat-raised-button class="float-right mt-2" type="submit">Create</button>
-      <a mat-raised-button class="float-right mt-2" routerLink="../">Cancel</a>
-    </form>
-  </div>
+    <button mat-raised-button class="float-right mt-2" type="submit">Create</button>
+    <a mat-raised-button class="float-right mt-2" routerLink="../">Cancel</a>
+  </form>
+</div>
