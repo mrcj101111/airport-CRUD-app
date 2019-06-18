@@ -81,6 +81,10 @@ export class CreateAirportComponent implements OnInit {
         this.toastr.success('Airport successfully added!');
         this.airport$ = of(res);
         this.router.navigate(['airports']);
-      });
+      },
+        (err) => {
+          this.toastr.warning('Oops, airport already exists.');
+        }
+      );
   }
 }
