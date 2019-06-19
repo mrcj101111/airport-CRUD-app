@@ -84,7 +84,7 @@ exports.updateAirline = (req, res) => {
             airline_name: req.body.airlineName,
             country_id: req.body.countryId,
         }).then(result => {
-            res.status(201).json({
+            res.status(200).json({
                 message: 'Airline successfully updated!'
             })
         }).catch(err => {

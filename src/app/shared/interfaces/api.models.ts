@@ -7,7 +7,8 @@ export interface Airline {
 export interface Airport {
     airport_id: number;
     airport_name: string;
-    location: number;
+    lat: number;
+    long: number;
     country: Country;
     airline: Airline;
 }

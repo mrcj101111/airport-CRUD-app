@@ -41,7 +41,8 @@ exports.getAirports = (req, res) => {
                     airport: {
                         id: data.airport_id,
                         name: data.name,
-                        location: data.location,
+                        lat: data.lat,
+                        long: data.long,
                         country: {
                             id: data.country_id,
                             name: data.country_name,
@@ -75,6 +76,8 @@ exports.getAirport = (req, res) => {
                     airport: {
                         id: data.airport_id,
                         name: data.name,
+                        lat: data.lat,
+                        long: data.long,
                         country: {
                             id: data.country_id,
                             name: data.country_name,
@@ -103,7 +106,7 @@ exports.updateAirport = (req, res) => {
             country_id: req.body.countryId,
             airline_id: req.body.airlineId,
         }).then(result => {
-            res.status(201).json({
+            res.status(200).json({
                 message: 'Airport successfully updated!'
             })
         }).catch(err => {

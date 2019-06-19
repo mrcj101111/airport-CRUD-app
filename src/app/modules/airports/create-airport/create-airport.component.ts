@@ -69,16 +69,14 @@ export class CreateAirportComponent implements OnInit {
   get f() { return this.createAirportForm.controls; }
 
   onSubmit() {
-    console.log(this.selectedAirline);
     this.submitted = true;
     if (this.createAirportForm.invalid) {
       return;
     }
     this.apiService.createAirport(
       this.createAirportForm.value.airport_name, this.chosenLat, this.chosenLong,
-      this.selectedCountry.country_id, this.selectedAirline).pipe(
-        tap(data => console.log(data))
-      ).subscribe(res => {
+      this.selectedCountry.country_id, this.selectedAirline)
+      .subscribe(res => {
         this.toastr.success('Airport successfully added!');
         this.airport$ = of(res);
         this.router.navigate(['airports']);
