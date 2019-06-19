@@ -92,6 +92,27 @@ exports.getAirport = (req, res) => {
         })
 }
 
+//Update airport
+exports.updateAirport = (req, res) => {
+    db('airport')
+        .where('airport_id', req.params.id)
+        .update({
+            name: req.body.airportName,
+            lat: req.body.lat,
+            long: req.body.long,
+            country_id: req.body.countryId,
+            airline_id: req.body.airlineId,
+        }).then(result => {
+            res.status(201).json({
+                message: 'Airport successfully updated!'
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}
+
 // Delete airline
 exports.deleteAirport = (req, res) => {
     db('airport')
