@@ -35,6 +35,7 @@ export class AirportDetailComponent implements OnInit {
       // Create a map based on properties.
       const map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
 
+      // Add marker to airport loaction.
       const marker = new google.maps.Marker({
         position: { lat: Number(data[0].airport.lat), lng: Number(data[0].airport.long) },
         map,
