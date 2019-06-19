@@ -1,6 +1,7 @@
 <div class="container">
   <h3 class="page-headings">Create Airport</h3>
 
+  <!--Create airport form-->
   <form class="w-100" [formGroup]="createAirportForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-100">
       <input matInput placeholder="Airport name" formControlName="airport_name"
@@ -9,7 +10,6 @@
         <div *ngIf="f.airport_name.errors.required">Airport name is required</div>
       </div>
     </mat-form-field>
-
     <ng-container *ngIf="(countries$ | async) as countries">
       <mat-form-field class="w-100">
         <mat-label>Select country</mat-label>
@@ -24,7 +24,6 @@
         </div>
       </mat-form-field>
     </ng-container>
-
     <ng-container *ngIf="(airlines$ | async) as airlines">
       <mat-form-field class="w-100">
         <mat-label>Select airline</mat-label>

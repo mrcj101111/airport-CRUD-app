@@ -41,7 +41,6 @@ export class CreateAirportComponent implements OnInit {
 
     // Create a variable map based on properties.
     const map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-    const infoWindow = new google.maps.InfoWindow();
 
     // Listen to user's click to add location of airport.
     map.addListener('click', e => {
@@ -57,6 +56,7 @@ export class CreateAirportComponent implements OnInit {
       });
       map.panTo(latLng);
     }
+    // Get airline and country info to display.
     this.airlines$ = this.apiService.getAirlines();
     this.countries$ = this.apiService.getCountries();
     this.createAirportForm = this.formBuilder.group({

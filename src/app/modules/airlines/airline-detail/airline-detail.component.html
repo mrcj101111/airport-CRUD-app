@@ -1,7 +1,6 @@
 <div class="container">
   <ng-container *ngIf="(airlines$ | async) as airlines ">
     <h3 class="page-headings mb-3">Airline</h3>
-
     <h4>Airline name:</h4><p>{{ airlines[0].airline.name }}</p>
     <h4>Airline country:</h4><p>{{ airlines[0].airline.country.name }}</p>
     <a mat-raised-button class="float-right mt-2" routerLink="../">Cancel</a>

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AirportsComponent implements OnInit {
   airports$: Observable<Airport>;
-  displayedColumns: string[] = ['name', 'country', 'actions'];
+  displayedColumns: string[] = ['name', 'country', 'airline', 'actions'];
 
   constructor(
     private apiService: ApiService,
@@ -21,6 +21,7 @@ export class AirportsComponent implements OnInit {
     this.airports$ = this.apiService.getAirports();
   }
 
+  // Delete selected airport.
   delete(id: number) {
     return this.apiService.deleteAirport(id).subscribe(res => {
         this.toastr.success('Airport successfully deleted!');

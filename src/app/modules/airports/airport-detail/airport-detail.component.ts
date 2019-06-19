@@ -31,9 +31,15 @@ export class AirportDetailComponent implements OnInit {
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      // Create a variable map based on properties.
+
+      // Create a map based on properties.
       const map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-      const infoWindow = new google.maps.InfoWindow();
+
+      const marker = new google.maps.Marker({
+        position: { lat: Number(data[0].airport.lat), lng: Number(data[0].airport.long) },
+        map,
+        title: data[0].airport.name
+      });
     });
   }
 }

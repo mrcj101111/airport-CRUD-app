@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.services';
 import { Airline } from 'src/app/shared/interfaces/api.models';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -16,13 +16,13 @@ export class AirlinesComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private toastr: ToastrService,
-    private router: Router,
   ) { }
 
   ngOnInit() {
     this.airlines$ = this.apiService.getAirlines();
   }
 
+  // Delete selected airline.
   delete(id: number) {
     return this.apiService.deleteAirline(id).subscribe(res => {
         this.toastr.success('Airline successfully deleted!');

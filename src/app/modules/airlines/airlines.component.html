@@ -5,22 +5,18 @@
     <ng-container *ngIf="airlines.length === 0; else dataTable">
       <p class="mt-2">There are no current airlines. Please click the button to create a new airline.</p>
     </ng-container>
-
     <ng-template #dataTable>
       <table mat-table [dataSource]="airlines$" class="mat-elevation-z8 mt-3 w-100">
-
         <!-- Airline name column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Airline name </th>
           <td mat-cell *matCellDef="let airlines"> {{airlines.airline.name}}</td>
         </ng-container>
-
         <!-- Country Column -->
         <ng-container matColumnDef="country">
           <th mat-header-cell *matHeaderCellDef> Country </th>
           <td mat-cell *matCellDef="let airlines"> {{airlines.airline.country.name}}</td>
         </ng-container>
-
         <!--Actions-->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
@@ -34,7 +30,6 @@
             </a>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

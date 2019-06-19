@@ -1,6 +1,7 @@
 <div class="container">
   <h3 class="page-headings">Create Airlines</h3>
 
+  <!--Create airline form-->
   <form class="w-100" [formGroup]="createAirlineForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-100">
       <input matInput placeholder="Airline name" formControlName="airline_name"
@@ -9,20 +10,15 @@
         <div *ngIf="f.airline_name.errors.required">Airline name is required</div>
       </div>
     </mat-form-field>
-
     <ng-container *ngIf="(countries$ | async) as countries">
       <mat-form-field class="w-100">
         <mat-label>Select country</mat-label>
-
         <mat-select formControlName="country_name" [(ngModel)]="selectedCountry" [ngClass]="{ 'is-invalid': submitted && f.country_name.errors }"
           value="Test">
           <mat-option *ngFor="let country of countries" [value]="country">
             {{ country.country_name }}
           </mat-option>
         </mat-select>
-
-
-
         <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
           <div *ngIf="f.country_name.errors.required">Country name is required</div>
         </div>
@@ -31,4 +27,5 @@
     <button mat-raised-button class="float-right mb-2" type="submit">Create</button>
     <a mat-raised-button class="float-right mb-2" routerLink="../">Cancel</a>
   </form>
+
 </div>

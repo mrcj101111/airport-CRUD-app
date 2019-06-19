@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.services';
 import { ToastrService } from 'ngx-toastr';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-airport',
@@ -35,6 +35,7 @@ export class UpdateAirportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Get airport, airline and country info to display.
     this.airport$ = this.apiService.getAirport(this.airportId$);
     this.airlines$ = this.apiService.getAirlines();
     this.countries$ = this.apiService.getCountries();

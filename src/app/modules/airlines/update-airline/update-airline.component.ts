@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.services';
 import { ToastrService } from 'ngx-toastr';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-airline',
@@ -26,7 +25,6 @@ export class UpdateAirlineComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
   ) { }
-
 
   ngOnInit() {
     this.countries$ = this.apiService.getCountries();
