@@ -3,7 +3,7 @@
   <button mat-raised-button class="float-right mb-2" routerLink="create-airport">Create airport</button>
   <ng-container *ngIf="(airports$ | async) as airports">
     <ng-container *ngIf="airports.length === 0; else dataTable">
-      There are no current airports. Please click the button to create a new airport.
+      <p class="mt-2">There are no current airports. Please click the button to create a new airport.</p>
     </ng-container>
 
     <ng-template #dataTable>

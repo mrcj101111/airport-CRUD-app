@@ -7,7 +7,7 @@
         <input matInput placeholder="Airport name" formControlName="airport_name"
           [ngClass]="{ 'is-invalid': submitted && f.airport_name.errors }" value="{{ airport[0].airport.name }}">
         <div *ngIf="submitted && f.airport_name.errors" class="invalid-feedback">
-          <div *ngIf="f.airport_name.errors.required">Airport name is required</div>
+          <div *ngIf="f.airport_name.errors.required">Please type in new airport name</div>
         </div>
       </mat-form-field>
     
@@ -22,7 +22,7 @@
             </mat-option>
           </mat-select>
           <div *ngIf="submitted && f.country_name.errors" class="invalid-feedback">
-            <div *ngIf="f.country_name.errors.required">Country name is required</div>
+            <div *ngIf="f.country_name.errors.required">Please select new country</div>
           </div>
         </mat-form-field>
     </ng-container>
@@ -37,7 +37,7 @@
           </mat-option>
         </mat-select>
         <div *ngIf="submitted && f.airline_name.errors" class="invalid-feedback">
-          <div *ngIf="f.airline_name.errors.required">Airline name is required</div>
+          <div *ngIf="f.airline_name.errors.required">Please select new airline</div>
         </div>
       </mat-form-field>
       <a mat-raised-button class="mb-3" routerLink="/airlines/create-airline">
@@ -49,7 +49,7 @@
     <p class="text-secondary">Select position of airport:</p>
     <div #map style='width:100%;height:400px'></div>
 
-    <button mat-raised-button class="float-right mt-2" type="submit">Update</button>
-    <a mat-raised-button class="float-right mt-2" routerLink="../../">Cancel</a>
+    <button mat-raised-button class="float-right my-4" type="submit">Update</button>
+    <a mat-raised-button class="float-right my-4" routerLink="../../">Cancel</a>
   </form>
 </div>
