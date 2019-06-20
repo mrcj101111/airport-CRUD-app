@@ -72,9 +72,9 @@ export class ApiService {
         );
     }
 
-    updateAirport(airportName: string, lat: number, long: number, countryId: number, airlineId: number, airportId): Observable<Airport> {
+    updateAirport(airportName: string, lat: number, long: number, countryId: number, airportId: number): Observable<Airport> {
         return this.http.patch(this.baseUrl + this.URL_AIRPORTS + '/update-airport/' + airportId,
-        { airportName, lat, long, countryId, airlineId }).pipe(
+        { airportName, lat, long, countryId }).pipe(
             map(data => data as Airport)
         );
     }

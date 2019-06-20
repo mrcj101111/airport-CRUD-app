@@ -13,7 +13,6 @@ import { map } from 'rxjs/operators';
   templateUrl: './update-airport.component.html',
 })
 export class UpdateAirportComponent implements OnInit {
-  airlines$: Observable<Airline>;
   countries$: Observable<Country>;
   airport$: Observable<Airport>;
   airports$: Observable<Airport>;
@@ -37,12 +36,10 @@ export class UpdateAirportComponent implements OnInit {
   ngOnInit() {
     // Get airport, airline and country info to display.
     this.airport$ = this.apiService.getAirport(this.airportId$);
-    this.airlines$ = this.apiService.getAirlines();
     this.countries$ = this.apiService.getCountries();
     this.createAirportForm = this.formBuilder.group({
       airport_name: ['', [Validators.required]],
       country_name: ['', [Validators.required]],
-      airline_name: ['', [Validators.required]],
     });
     // Set initial map properties based on airport info.
     return this.apiService.getAirport(this.airportId$).pipe(
@@ -82,7 +79,7 @@ export class UpdateAirportComponent implements OnInit {
     }
     this.apiService.updateAirport(
       this.createAirportForm.value.airport_name, this.chosenLat, this.chosenLong,
-      this.selectedCountry.country_id, this.selectedAirline, this.airportId$)
+      this.selectedCountry.country_id, this.airportId$)
       .subscribe(res => {
         this.toastr.success('Airport successfully updated!');
         this.airports$ = of(res);

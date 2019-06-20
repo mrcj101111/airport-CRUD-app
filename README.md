@@ -22,13 +22,14 @@ Clone this repository to your local machine and then `cd` into the folder where 
 Create a databse in Postgres called _airport_. Be sure to make your username _postgres_ and your password, _password_ when setting up the database.
 
 ## Run 
-To run your backend on a local server, navigate into the `api` and type in the following in your cli:
-
-    node app.js
-
+Before you run your backend, make sure you have the latest migrations.
 To run the latest migrations navigate into your `api` folder and type in the following comand:
 
     knex migrate:latest
+
+To run your backend on a local server, navigate into the `api` and type in the following in your cli:
+
+    node app.js
 
 To run your frontend on a local server, navigate into the `airport-CRUD-app` folder and run the following command:
 

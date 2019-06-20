@@ -25,23 +25,6 @@
           </div>
         </mat-form-field>
       </ng-container>
-      <ng-container *ngIf="(airlines$ | async) as airlines">
-        <mat-form-field class="w-100">
-          <mat-label>{{ airport[0].airport.airline.name }}</mat-label>
-          <mat-select formControlName="airline_name" [(ngModel)]="selectedAirline"
-            [ngClass]="{ 'is-invalid': submitted && f.airline_name.errors }">
-            <mat-option *ngFor="let airline of airlines" [value]="airline.airline.id">
-              {{ airline.airline.name }}
-            </mat-option>
-          </mat-select>
-          <div *ngIf="submitted && f.airline_name.errors" class="invalid-feedback">
-            <div *ngIf="f.airline_name.errors.required">Please select new airline</div>
-          </div>
-        </mat-form-field>
-        <a mat-raised-button class="mb-3" routerLink="/airlines/create-airline">
-          Add airline
-        </a>
-      </ng-container>
     </ng-container>
 
     <p class="text-secondary">Select position of airport:</p>

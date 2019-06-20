@@ -11,7 +11,6 @@ exports.createAirport = (req, res) => {
                 lat: req.body.lat,
                 long: req.body.long,
                 country_id: req.body.countryId,
-                airline_id: req.body.airlineId,
             }).then(result => {
                 res.status(201).json(
                     result
@@ -33,9 +32,9 @@ exports.createAirport = (req, res) => {
 //Get airports
 exports.getAirports = (req, res) => {
     db('airport')
-    .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
-        .join('country', { 'airport.country_id': 'country.country_id' })
-        .select().then(result => {
+        .leftJoin('country', { 'airport.country_id': 'country.country_id' })
+        .then(result => {
+            console.log(result)
             obj = result.map(data => {
                 return {
                     airport: {
@@ -48,16 +47,17 @@ exports.getAirports = (req, res) => {
                             name: data.country_name,
                             code: data.country_code
                         },
-                        airline: {
-                            id: data.airline_id,
-                            name: data.airline_name,
-                            country: data.country_id,
+                        airport_airline: {
+                            id: data.airport_airline_id,
+                            airport_id: data.airport_airline_id,
+                            airline_id: data.airline_id,
                         }
                     }
                 };
             })
             res.status(200).json(obj);
         }).catch(err => {
+            console.log(err)
             res.status(500).json({
                 message: 'Oops! Something went wrong, please try again later.'
             })
@@ -67,8 +67,7 @@ exports.getAirports = (req, res) => {
 //Get current airport
 exports.getAirport = (req, res) => {
     db('airport').where('airport_id', req.params.id)
-    .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
-        .join('country', { 'airport.country_id': 'country.country_id' })
+        .join('country', { 'airport.country_id' : 'country.country_id' })
         .select()
         .then(result => {
             obj = result.map(data => {
@@ -83,10 +82,10 @@ exports.getAirport = (req, res) => {
                             name: data.country_name,
                             code: data.country_code
                         },
-                        airline: {
-                            id: data.airline_id,
-                            name: data.airline_name,
-                            code: data.airline_code
+                        airport_airline: {
+                            id: data.airport_airline_id,
+                            airport_id: data.airport_airline_id,
+                            airline_id: data.airline_id,
                         }
                     }
                 };
@@ -104,7 +103,6 @@ exports.updateAirport = (req, res) => {
             lat: req.body.lat,
             long: req.body.long,
             country_id: req.body.countryId,
-            airline_id: req.body.airlineId,
         }).then(result => {
             res.status(200).json({
                 message: 'Airport successfully updated!'

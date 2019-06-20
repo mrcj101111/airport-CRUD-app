@@ -1,11 +1,6 @@
 <div class="container">
   <h3 class="page-headings">Link airlines to airport</h3>
 
-  <ng-container *ngIf="(airportAirline$ | async) as airportAirline">
-    {{ airportAirline.airport_id }}
-
-  </ng-container>
-
   <!--Link airline form-->
   <form class="w-100" [formGroup]="linkAirlineForm" (ngSubmit)="onSubmit()">
     <ng-container *ngIf="(airlines$ | async) as airlines">

@@ -2,7 +2,7 @@ import { } from 'googlemaps';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.services';
 import { ActivatedRoute } from '@angular/router';
-import { Airport } from 'src/app/shared/interfaces/api.models';
+import { Airport, Airline, AirportAirline } from 'src/app/shared/interfaces/api.models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,6 +13,8 @@ import { map } from 'rxjs/operators';
 export class AirportDetailComponent implements OnInit {
   airportId$ = Number(this.route.snapshot.paramMap.get('id'));
   airport$: Observable<Airport>;
+  airlineName$: Observable<Airline>;
+  airlineId$: Observable<AirportAirline>;
   @ViewChild('map', { static: true }) mapElement: any;
 
   constructor(
@@ -21,6 +23,8 @@ export class AirportDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.airlineName$ = this.apiService.getAirlines();
+    this.airlineId$ = this.apiService.getAirportAirline();
     this.airport$ = this.apiService.getAirport(this.airportId$);
     // Set initial map properties based on airport info.
     return this.apiService.getAirport(this.airportId$).pipe(

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AirportsComponent implements OnInit {
   airports$: Observable<Airport>;
-  displayedColumns: string[] = ['name', 'country', 'airline', 'actions'];
+  displayedColumns: string[] = ['name', 'country', 'actions'];
 
   constructor(
     private apiService: ApiService,

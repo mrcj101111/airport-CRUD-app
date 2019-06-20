@@ -5,8 +5,18 @@
     <p>{{ airport[0].airport.name }}</p>
     <h4>Country:</h4>
     <p>{{ airport[0].airport.country.name }}</p>
-    <h4>Airline:</h4>
-    <p>{{ airport[0].airport.airline.name }}</p>
+    <h4>Linked airlines:</h4>
+    <ng-container *ngIf="(airlineId$ | async) as airlines">
+      <div *ngFor="let airline of airlines">
+        <ng-container *ngIf="(airlineName$ | async) as airlines">
+          <div *ngFor="let airlineName of airlines">
+            <ng-container *ngIf="airline.airline_id === airlineName.airline.id">
+              <p>{{ airlineName.airline.name }}</p>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
   </ng-container>
   <div #map style='width:100%;height:400px'></div>
   <a mat-raised-button class="float-right my-4" routerLink="../">Cancel</a>

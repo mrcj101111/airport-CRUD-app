@@ -5,7 +5,7 @@ exports.up = function (knex, Promise) {
         table.decimal('long');
         table.decimal('lat');
         table.integer('country_id');
-        table.integer('airline_id');
+        table.integer('airport_airline_id');
     })
 };
 
