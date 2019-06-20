@@ -1,7 +1,7 @@
 exports.up = function (knex, Promise) {
     return knex.schema.createTable('flight_plan', table => {
         table.increments('flight_plan_id');
-        table.string('country_id');
+        table.integer('route_id');
     })
 };
 

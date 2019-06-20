@@ -10,6 +10,7 @@ import { AirlineDetailComponent } from './modules/airlines/airline-detail/airlin
 import { CreateAirportComponent } from './modules/airports/create-airport/create-airport.component';
 import { AirportDetailComponent } from './modules/airports/airport-detail/airport-detail.component';
 import { UpdateAirportComponent } from './modules/airports/update-airport/update-airport.component';
+import { LinkAirlinesComponent } from './modules/airports/link-airlines/link-airlines.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'airports' },
@@ -18,7 +19,13 @@ const routes: Routes = [
     path: 'airports', canActivate: [AuthGuard],
     children: [
       { path: '', component: AirportsComponent },
-      { path: 'create-airport', component: CreateAirportComponent },
+      {
+        path: 'create-airport',
+        children: [
+          { path: '', component: CreateAirportComponent },
+          { path: 'link-airlines', component: LinkAirlinesComponent },
+        ]
+      },
       { path: ':id', component: AirportDetailComponent },
       { path: 'update-airport/:id', component: UpdateAirportComponent },
     ]

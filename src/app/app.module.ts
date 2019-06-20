@@ -23,6 +23,7 @@ import { AirlineDetailComponent } from './modules/airlines/airline-detail/airlin
 import { CreateAirportComponent } from './modules/airports/create-airport/create-airport.component';
 import { AirportDetailComponent } from './modules/airports/airport-detail/airport-detail.component';
 import { UpdateAirportComponent } from './modules/airports/update-airport/update-airport.component';
+import { LinkAirlinesComponent } from './modules/airports/link-airlines/link-airlines.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { UpdateAirportComponent } from './modules/airports/update-airport/update
     CreateAirportComponent,
     AirportDetailComponent,
     UpdateAirportComponent,
+    LinkAirlinesComponent,
+    LinkAirlinesComponent,
   ],
   imports: [
     ToastrModule.forRoot({

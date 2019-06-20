@@ -2,9 +2,10 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('airport', table => {
         table.increments('airport_id');
         table.string('name');
-        table.decimal('location');
-        table.string('country_id');
-        table.string('airline_id');
+        table.decimal('long');
+        table.decimal('lat');
+        table.integer('country_id');
+        table.integer('airline_id');
     })
 };
 

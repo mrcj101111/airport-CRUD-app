@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Airline, Country, Airport } from '../shared/interfaces/api.models';
+import { Airline, Country, Airport, AirportAirline } from '../shared/interfaces/api.models';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -59,9 +59,9 @@ export class ApiService {
         );
     }
 
-    createAirport(airportName: string, lat: number, long: number, countryId: number, airlineId: number): Observable<Airport> {
+    createAirport(airportName: string, lat: number, long: number, countryId: number): Observable<Airport> {
         return this.http.post(this.baseUrl + this.URL_AIRPORTS + '/create-airport', {
-            airportName, lat, long, countryId, airlineId
+            airportName, lat, long, countryId
         }).pipe(map(data => data as Airport)
         );
     }
@@ -76,6 +76,18 @@ export class ApiService {
         return this.http.patch(this.baseUrl + this.URL_AIRPORTS + '/update-airport/' + airportId,
         { airportName, lat, long, countryId, airlineId }).pipe(
             map(data => data as Airport)
+        );
+    }
+
+    createAirportAirline(airportId: number, airlineId: number): Observable<AirportAirline> {
+        return this.http.post(this.baseUrl + this.URL_AIRPORTS + '/add-airport-airline', {
+            airportId, airlineId
+        }).pipe(map(data => data as AirportAirline));
+    }
+
+    getAirportAirline(): Observable<AirportAirline> {
+        return this.http.get(this.baseUrl + this.URL_AIRPORTS + '/airport-airline').pipe(
+            map(data => data as AirportAirline)
         );
     }
 

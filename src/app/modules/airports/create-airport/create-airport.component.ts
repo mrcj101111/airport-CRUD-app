@@ -1,24 +1,21 @@
 import { } from 'googlemaps';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.services';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
-import { Airline, Country, Airport } from 'src/app/shared/interfaces/api.models';
-import { tap } from 'rxjs/operators';
+import { Country, Airport } from 'src/app/shared/interfaces/api.models';
 
 @Component({
   selector: 'app-create-airport',
   templateUrl: './create-airport.component.html',
 })
 export class CreateAirportComponent implements OnInit {
-  airlines$: Observable<Airline>;
   countries$: Observable<Country>;
   airport$: Observable<Airport>;
   createAirportForm: FormGroup;
   selectedCountry: Country;
-  selectedAirline: number;
   submitted = false;
   chosenLat: number;
   chosenLong: number;
@@ -29,6 +26,7 @@ export class CreateAirportComponent implements OnInit {
     private router: Router,
     private apiService: ApiService,
     private toastr: ToastrService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -57,7 +55,6 @@ export class CreateAirportComponent implements OnInit {
       map.panTo(latLng);
     }
     // Get airline and country info to display.
-    this.airlines$ = this.apiService.getAirlines();
     this.countries$ = this.apiService.getCountries();
     this.createAirportForm = this.formBuilder.group({
       airport_name: ['', [Validators.required]],
@@ -75,11 +72,11 @@ export class CreateAirportComponent implements OnInit {
     }
     this.apiService.createAirport(
       this.createAirportForm.value.airport_name, this.chosenLat, this.chosenLong,
-      this.selectedCountry.country_id, this.selectedAirline)
+      this.selectedCountry.country_id)
       .subscribe(res => {
         this.toastr.success('Airport successfully added!');
         this.airport$ = of(res);
-        this.router.navigate(['airports']);
+        this.router.navigate(['./link-airlines'], {relativeTo: this.route});
       },
         (err) => {
           this.toastr.warning('Oops, airport already exists.');

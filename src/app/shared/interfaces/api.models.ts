@@ -23,3 +23,8 @@ export interface FlightPlan {
     flight_plan_id: number;
     country: Country;
 }
+
+export interface AirportAirline {
+    airport_id: number;
+    airline_id: number;
+}

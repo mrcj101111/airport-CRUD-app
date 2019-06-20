@@ -1,0 +1,43 @@
+<div class="container">
+  <h3 class="page-headings">Link airlines to airport</h3>
+
+  <ng-container *ngIf="(airportAirline$ | async) as airportAirline">
+    {{ airportAirline.airport_id }}
+
+  </ng-container>
+
+  <!--Link airline form-->
+  <form class="w-100" [formGroup]="linkAirlineForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="(airlines$ | async) as airlines">
+      <mat-form-field class="w-100">
+        <mat-label>Airline name</mat-label>
+        <mat-select formControlName="airline_name" [(ngModel)]="selectedAirline"
+          [ngClass]="{ 'is-invalid': submitted && f.airline_name.errors }">
+          <mat-option *ngFor="let airline of airlines" [value]="airline.airline">
+            {{ airline.airline.name }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="submitted && f.airline_name.errors" class="invalid-feedback">
+          <div *ngIf="f.airline_name.errors.required">Please select a airline name</div>
+        </div>
+      </mat-form-field>
+    </ng-container>
+    <ng-container *ngIf="(airports$ | async) as airports">
+      <mat-form-field class="w-100">
+        <mat-label>Airport name</mat-label>
+        <mat-select formControlName="airport_name" [(ngModel)]="selectedAirport"
+          [ngClass]="{ 'is-invalid': submitted && f.airport_name.errors }">
+          <mat-option *ngFor="let airport of airports" [value]="airport.airport">
+            {{ airport.airport.name }}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="submitted && f.airport_name.errors" class="invalid-feedback">
+          <div *ngIf="f.airport_name.errors.required">Please select a airport name</div>
+        </div>
+      </mat-form-field>
+    </ng-container>
+    <button mat-raised-button class="float-right mb-2" type="submit">Create</button>
+    <a mat-raised-button class="float-right mb-2" routerLink="../">Cancel</a>
+  </form>
+
+</div>

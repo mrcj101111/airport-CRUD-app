@@ -33,7 +33,7 @@ exports.createAirport = (req, res) => {
 //Get airports
 exports.getAirports = (req, res) => {
     db('airport')
-        .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
+    .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
         .join('country', { 'airport.country_id': 'country.country_id' })
         .select().then(result => {
             obj = result.map(data => {
@@ -67,7 +67,7 @@ exports.getAirports = (req, res) => {
 //Get current airport
 exports.getAirport = (req, res) => {
     db('airport').where('airport_id', req.params.id)
-        .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
+    .leftJoin('airline', { 'airport.airline_id': 'airline.airline_id' })
         .join('country', { 'airport.country_id': 'country.country_id' })
         .select()
         .then(result => {
@@ -123,6 +123,62 @@ exports.deleteAirport = (req, res) => {
         .del().then(result => {
             res.status(201).json({
                 message: 'Airport successfully deleted!'
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}
+
+//Add airport airline relation
+exports.createAirportAirline = (req, res) => {
+    db.from('airport_airline').where('airport_id', req.body.airportId)
+        .where('airline_id', req.body.airlineId)
+        .then(airportAirlineList => {
+            if (airportAirlineList.length === 0) {
+                db('airport_airline').insert({
+                    airport_id: req.body.airportId,
+                    airline_id: req.body.airlineId,
+                }).then(result => {
+                    res.status(201).json(
+                        result
+                    )
+                })
+                    .catch(err => {
+                        res.status(500).json({
+                            message: 'Oops! Something went wrong, please try again later.'
+                        })
+                    })
+            } else {
+                res.status(409).json({
+                    message: 'This combination already exists!'
+                })
+            }
+        })
+}
+
+//Get airport airline relation
+exports.getAirportAirline = (req, res) => {
+    db.from('airport_airline')
+        .then(result => {
+            res.status(200).json(
+                result
+            )
+        }).catch(err => {
+            res.status(500).json({
+                message: 'Oops! Something went wrong, please try again later.'
+            })
+        })
+}
+
+// Delete airport airline relation
+exports.deleteAirportAirline = (req, res) => {
+    db('airport_airline')
+        .where('airport_id', req.body.id)
+        .del().then(result => {
+            res.status(201).json({
+                message: 'Airport, Airline relation successfully deleted!'
             })
         }).catch(err => {
             res.status(500).json({
